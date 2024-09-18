@@ -1,0 +1,111 @@
+# On Windows, be wary of invisible (and maybe important) files so you don't miss them in globs!
+# You can show these in explorer with View > Hidden Items, and
+# View > Options > Change folder and search options > View > Advanced settings > Hide protected operating system files (uncheck)
+# While you're add it, also uncheck "Hide extensions for known file types" in that menu,
+# because you don't want to miss malware disguised as a .pdf when it's actually a .pdf.exe file and Windows is hiding the .exe part.
+
+
+# Overrides groups into each other. Defaults to no overrides.
+# The key specifies a group to treat as the new group (on the right).
+# Only one override will be applied to a given group.
+# NOTE: overrides no not apply to the default group, "unknown".
+# overrides:
+#     sync: backup
+
+# Root path for file groups. Defaults to the current working directory.
+# An empty string means "absolute root". On Unix, absolute root is "/", and on
+# Windows, it is "\\?\". Use drive letters after on Windows to be more specific.
+# If "absolute root" is used, the flag -a will be auto-set.
+#
+# Relative paths are resolved relative to this config's directory.
+# You may only have one root, and any ".." are not resolved above this.
+#
+# NOTE: On Windows, do NOT use "\\?\"; paths will use this internally;
+#       you can, however, assume that all paths will start with this prefix.
+# NOTE: On Windows, a "\" (or "/") refers to the drive of the current working directory,
+#       which is typically the C:\ drive unless you're working in another drive.
+# NOTE: "/" works as a path separator on both Unix and Windows systems,
+#       while "\" only works on Windows.
+root: /
+# If you want to be more specific, you can use a drive letter directly.
+# root: C:/
+
+# If this is true, relative root paths will be resolved relative to
+# this config's current directory instead of the current working directory.
+# config_relative_root: false
+
+# Files is a dictionary of how to group various files/folders.
+#
+# Each key is a list of globs (separated by double comma ", ") prepended on it's parent,
+# and the value may be a string (group), a dictionary (of subkeys/globs).
+# Unmatched paths will be given the default group, "unknown".
+#
+# Globs can use "**" (recursive), "*" (wildcard), "?" (any character), or [abc] (character groups).
+# You may also use ".." to move to the parent directory and "." to select the current directory.
+# To escape any special characters, put them in a character group: [?] [*] [,][,] [.]
+# For more information, see this page: https://docs.python.org/3/library/fnmatch.html)
+#
+# NOTE: "/" works as a path separator on both Unix and Windows systems,
+#       while "\" only works on Windows.
+# NOTE: If multiple paths are described by any globs, the first one listed will take priority.
+# NOTE: Any globs that have a dictionary as their value will only match directories.
+# NOTE: Recursive globs can be pretty expensive - to minimize cost, recursive globs
+#       on any directory are cached. You can prevent descending into any large directories
+#       by grouping them directly.
+files:
+    # root-managed directories.
+    Windows, Program Files, Program Files (x86): managed
+
+    # The Public user is for shared files on a network.
+    Users/Public: ignore
+    # You can use the "Users/Default User" or "Users/Default" path instead of "Users/*" if you want.
+    Users/Default User, Users/Default: ignore
+    # The All Users folder may have some useful items in it
+    Users/All Users: backup
+
+    # Evaluate the home directory for all users:
+    # Note that "*" is a special character in yaml and must be put in quotes.
+    # Also, variables and path constructions such as "~user" or "$HOME" do not work here.
+    "Users/*":
+        # Do not do this if you want to put a line with multiple globs in quotes:
+        # "3D Objects", "Contacts": delete
+        # instead, do this:
+        "3D Objects, Contacts": delete
+
+        # This is not a regular expression. It means a literal "." followed by 0 or more of any character.
+        ".*": dotfiles
+
+        # application data and configuration.
+        AppData:
+            Local, LocalLow: managed
+            Roaming: backup # Most program data is here
+
+        # Note that this sequence of globs:
+        # AppData/Local: backup
+        # "*": other
+        # Would place ~/.local/share in "backup" and ~/.local/state in "other".
+        # This is because ".local" is not fully matched, so "*" matches it and fills in subchildren.
+        # In general, prefer to split paths up so the files go into the "unknown" group instead.
+
+        # Backup trivial folders
+        Pictures: backup
+        # These folders can have some large file downloads in them.
+        Desktop: large
+        Downloads: large
+        # Music and Videos typically stay the same except when adding new tunes.
+        # It's pretty costly on space to back them up constantly, so they're synced instead.
+        Music: large
+        Videos: large
+        # The Public folder is for shared files on a network.
+        Public: ignore
+        # Documents are important.
+        Documents: backup
+
+        # Be wary of invisible important files so you don't miss them!
+        # You can show these in explorer with View > Hidden Items, and
+        # View > Options > Change folder and search options > View > Advanced settings > Hide protected operating system files (uncheck)
+        # While you're add it, also uncheck "Hide extensions for known file types" in that menu,
+        # because you don't want to miss malware disguised as a .pdf when it's actually a .pdf.exe file and Windows is hiding the .exe part.
+        "ntuser*, NTUSER*": managed
+
+        "*": other

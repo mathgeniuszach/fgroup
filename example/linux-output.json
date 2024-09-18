@@ -1,0 +1,58 @@
+{
+    "_comment": "generated on linux with: 'fgroup linux-output.json -c example/linux-config.yaml -i -a'. Slight truncated.",
+
+    "backup": [
+        "/home/mgz/.config/GIMP",
+        "/home/mgz/.config/obs-studio/basic",
+        "/home/mgz/Documents",
+        "/home/mgz/Pictures",
+        "/home/mgz/Templates"
+    ],
+    "delete": [
+        "/home/mgz/.cache",
+        "/home/mgz/.compose-cache",
+        "/srv"
+    ],
+    "dotfiles": [
+        "/home/mgz/.npm",
+        "/home/mgz/.pki",
+        "/home/mgz/.ssh",
+        "..."
+    ],
+    "ignore": [
+        "/etc",
+        "/home/mgz/.config/obs-studio/updates",
+        "/home/mgz/Public",
+        "/opt",
+        "/var"
+    ],
+    "large": [
+        "/home/mgz/Desktop",
+        "/home/mgz/Downloads",
+        "/home/mgz/Music",
+        "/home/mgz/Videos"
+    ],
+    "managed": [
+        "/bin",
+        "/boot",
+        "/dev",
+        "/lib",
+        "/lib64",
+        "/lost+found",
+        "/proc",
+        "/root",
+        "/run",
+        "/sys",
+        "/tmp",
+        "/usr"
+    ],
+    "trash": [
+        "/home/mgz/.local/share/Trash"
+    ],
+    "unknown": [
+        "/home/mgz/.config/QDirStat",
+        "/home/mgz/.config/VSCodium",
+        "/home/mgz/.config/qalculate",
+        "..."
+    ]
+}

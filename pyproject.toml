@@ -1,0 +1,45 @@
+[tool.poetry]
+name = "fgroup"
+version = "1.1.0"
+description = "A helpful cross-platorm utility for grouping files across many locations."
+authors = ["mathgeniuszach <huntingmanzach@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+repository = "https://github.com/xMGZx/fgroup"
+homepage = "https://www.mathgeniuszach.com/"
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pyyaml = "^6.0.2"
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.3"
+coverage = "^7.6.1"
+coverage-conditional-plugin = "^0.9.0"
+
+[tool.poetry.scripts]
+fgroup = "fgroup:run"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.coverage.run]
+plugins = ["coverage_conditional_plugin"]
+[tool.coverage.coverage_conditional_plugin.rules]
+# Coverage rules are inverted for no reason
+cover-if-win = "sys_platform == 'win32'"
+cover-if-unix = "sys_platform != 'win32'"
+
+[tool.poe.tasks.run]
+script = "scripts:run"
+[tool.poe.tasks.clean]
+script = "scripts:clean"
+[tool.poe.tasks.test]
+script = "scripts:test"
+[tool.poe.tasks.cover]
+script = "scripts:cover"
+[tool.poe.tasks.build]
+script = "scripts:build"
+[tool.poe.tasks.upload]
+script = "scripts:upload"

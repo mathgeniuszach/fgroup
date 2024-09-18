@@ -1,0 +1,57 @@
+{
+    "_comment": "generated on windows 10 with: 'fgroup windows-output.json -c example/linux-windows.yaml -i -a'.",
+
+    "backup": [
+        "\\\\?\\C:\\Users\\All Users",
+        "\\\\?\\C:\\Users\\Default\\AppData\\Roaming",
+        "\\\\?\\C:\\Users\\Default\\Documents",
+        "\\\\?\\C:\\Users\\Default\\Pictures",
+        "\\\\?\\C:\\Users\\Z\\AppData\\Roaming",
+        "\\\\?\\C:\\Users\\Z\\Documents",
+        "\\\\?\\C:\\Users\\Z\\Pictures"
+    ],
+    "ignore": [
+        "\\\\?\\C:\\Users\\Public",
+        "\\\\?\\C:\\Users\\Default User",
+        "\\\\?\\C:\\Users\\Default"
+    ],
+    "large": [
+        "\\\\?\\C:\\Users\\Z\\Desktop",
+        "\\\\?\\C:\\Users\\Z\\Downloads",
+        "\\\\?\\C:\\Users\\Z\\Music",
+        "\\\\?\\C:\\Users\\Z\\Videos"
+    ],
+    "managed": [
+        "\\\\?\\C:\\Program Files",
+        "\\\\?\\C:\\Program Files (x86)"
+    ],
+    "other": [
+        "\\\\?\\C:\\Users\\Z\\Application Data",
+        "\\\\?\\C:\\Users\\Z\\Cookies",
+        "\\\\?\\C:\\Users\\Z\\Favorites",
+        "\\\\?\\C:\\Users\\Z\\Links",
+        "\\\\?\\C:\\Users\\Z\\Local Settings",
+        "\\\\?\\C:\\Users\\Z\\My Documents",
+        "\\\\?\\C:\\Users\\Z\\NetHood",
+        "\\\\?\\C:\\Users\\Z\\PrintHood",
+        "\\\\?\\C:\\Users\\Z\\Recent",
+        "\\\\?\\C:\\Users\\Z\\Saved Games",
+        "\\\\?\\C:\\Users\\Z\\Searches",
+        "\\\\?\\C:\\Users\\Z\\SendTo",
+        "\\\\?\\C:\\Users\\Z\\Start Menu",
+        "\\\\?\\C:\\Users\\Z\\Templates"
+    ],
+    "unknown": [
+        "\\\\?\\C:\\$Recycle.Bin",
+        "\\\\?\\C:\\$WinREAgent",
+        "\\\\?\\C:\\Documents and Settings",
+        "\\\\?\\C:\\DumpStack.log.tmp",
+        "\\\\?\\C:\\PerfLogs",
+        "\\\\?\\C:\\ProgramData",
+        "\\\\?\\C:\\Recovery",
+        "\\\\?\\C:\\System Volume Information",
+        "\\\\?\\C:\\Users\\desktop.ini",
+        "\\\\?\\C:\\pagefile.sys",
+        "\\\\?\\C:\\swapfile.sys"
+    ]
+}
