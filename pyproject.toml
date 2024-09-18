@@ -1,11 +1,11 @@
 [tool.poetry]
 name = "fgroup"
-version = "1.1.1"
+version = "1.1.2"
 description = "A helpful cross-platorm utility for grouping files across many locations."
 authors = ["mathgeniuszach <huntingmanzach@gmail.com>"]
 license = "MIT"
 readme = "README.md"
-repository = "https://github.com/xMGZx/fgroup"
+repository = "https://github.com/mathgeniuszach/fgroup"
 homepage = "https://www.mathgeniuszach.com/"
 
 [tool.poetry.dependencies]

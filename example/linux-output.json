@@ -1,5 +1,5 @@
 {
-    "_comment": "generated on linux with: 'fgroup linux-output.json -c example/linux-config.yaml -i -a'. Slight truncated.",
+    "_comment": "generated on linux with: 'fgroup linux-output.json -c example/linux-config.yaml -i -a'. Slight truncated with '...'.",
 
     "backup": [
         "/home/mgz/.config/GIMP",
