@@ -551,3 +551,14 @@ def test_good_script():
             assert not os.path.exists(f)
         for f in ["b.txt.rename", "b.py.rename", "c.txt", "c.py"]:
             assert os.path.exists(f)
+def test_script_args():
+    with file_tree(["a.txt", "a.py", "b.txt", "b.py"]):
+        with open("script.py", "w") as file: file.write(
+            "import os\ndef run_actions(d, *args):\n for f in args: os.unlink(f)"
+        )
+        fgroup.main("-m", "*:all", "-s", "script.py", "-A", "a.txt", "a.py")
+
+        assert not os.path.exists("a.txt")
+        assert not os.path.exists("a.py")
+        assert os.path.exists("b.txt")
+        assert os.path.exists("b.py")

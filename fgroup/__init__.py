@@ -120,6 +120,10 @@ def main(*sys_argv: str) -> int:
         "Using this argument will prevent output to the given output path."
         "See below for more info. Not compatible with -f, -t, -g, or -i."
     ))
+    parser.add_argument("-A", "--args", metavar="ARG", nargs="*", help=wrap(
+        "Additional arguments to pass on to the -s script as strings.",
+        "Each argument is only given to the script's run_actions() function."
+    ))
 
 
     # Type checking for pyright
@@ -138,6 +142,7 @@ def main(*sys_argv: str) -> int:
             self.indent: 'Optional[Literal[False] | int]'
             self.override: 'Optional[list[str]]'
             self.script: 'Optional[str]'
+            self.args: 'Optional[list[str]]'
 
     file = None
     try:
@@ -158,6 +163,7 @@ def main(*sys_argv: str) -> int:
         assert args.indent is False or args.indent is None or isinstance(args.indent, int)
         assert args.override is None or (isinstance(args.override, list) and (isinstance(arg, str) for arg in args.override))
         assert args.script is None or isinstance(args.script, str)
+        assert args.args is None or (isinstance(args.args, list) and (isinstance(arg, str) for arg in args.args))
 
         if args.help:
             parser.print_help()
@@ -208,7 +214,7 @@ def main(*sys_argv: str) -> int:
                         getattr(userscript, func)(files)
 
                 if hasattr(userscript, "run_actions"):
-                    getattr(userscript, "run_actions")(grouper.groups)
+                    getattr(userscript, "run_actions")(grouper.groups, *(args.args or []))
             except Exception as e:
                 traceback.print_exc()
                 critical_err(f"failed to run script \"{args.script}\"; see error above")
