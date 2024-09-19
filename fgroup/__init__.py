@@ -121,7 +121,7 @@ def main(*sys_argv: str) -> int:
         "See below for more info. Not compatible with -f, -t, -g, or -i."
     ))
     parser.add_argument("-A", "--args", metavar="ARG", nargs="*", help=wrap(
-        "Additional arguments to pass on to the -s script as strings.",
+        "Additional arguments to pass on to the -s script as strings. "
         "Each argument is only given to the script's run_actions() function."
     ))
 

@@ -134,6 +134,7 @@ print(grouper.groups)
 ```
 usage: fgroup [-h] [-a] [-d] [-c CONFIG] [-m [P:G ...]] [-r [ROOT]] [-f TYPE]
               [-t [N]] [-g GROUP] [-i [N]] [-o [G:N ...]] [-s SCRIPT]
+              [-A [ARG ...]]
               [output]
 
 A helpful cross-platorm utility for grouping files across many locations.
@@ -180,6 +181,9 @@ options:
                             Using this argument will prevent output to the given
                             output path.See below for more info. Not compatible
                             with -f, -t, -g, or -i.
+  -A, --args [ARG ...]      Additional arguments to pass on to the -s script as
+                            strings. Each argument is only given to the script's
+                            run_actions() function.
 
 Output is given in four different formats. "text" is a long header-separated
 format, "json" and "yaml" output as dictionaries with the keys as groups and the
