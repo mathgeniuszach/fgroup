@@ -14,7 +14,7 @@ def run_action_backup(files: 'list[str]'):
     try:
         # Write files to temporary text file
         with open("backup.txt", "w") as file:
-            file.writelines(files)
+            file.write("\n".join(files))
         subprocess.call(["restic", "-r", "backups-repo", "backup", "--files-from-verbatim", "backup.txt"])
     finally:
         # Clean up temporary text file
