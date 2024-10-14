@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "fgroup"
-version = "1.2.1"
+version = "1.2.2"
 description = "A helpful cross-platorm utility for grouping files across many locations."
 authors = ["mathgeniuszach <huntingmanzach@gmail.com>"]
 license = "MIT"
